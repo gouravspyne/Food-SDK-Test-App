@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="setting">#33000000</color>
+    <color name="setting_item">#00000000</color>
+
+
+    <color name="primary">#FF7700</color>
+    <color name="primary_light">#1AF69C4C</color>
+    <color name="light">#7694ff</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#26FFFFFF</color>
+    <color name="transparents">#90000000</color>
+    <color name="grey">#CDCCCC</color>
+    <color name="eye_grey">#8E8D8D</color>
+    <color name="lightgrey">#DDD8D8</color>
+
+    <color name="light_grey">#D5D5D5</color>
+
+    <color name="categories_text">#4F4F4F</color>
+
+    <color name="credit_deducted">#B3B1B1</color>
+    <color name="line_separator">#F0EEEE</color>
+    <color name="shimmer_background">#dddddd</color>
+    <color name="green">#40CE4E</color>
+    <color name="red">#FF0000</color>
+
+    <color name="black_varient">#424242</color>
+
+
+    <color name="gyro_in_level">#1F7900</color>
+    <color name="gyro_error_level">#64FF0B0B</color>
+
+
+    <color name="sub_cat_selection">#566DED</color>
+
+
+    <color name="tags_title_color">#616161</color>
+
+    <color name="qc_green">#B31CA24A</color>
+    <color name="qc_yellow">#B3FFC70A</color>
+    <color name="qc_orange">#B3FC791A</color>
+    <color name="qc_red">#B3AA0602</color>
+
+    <color name="reshoot_sku_separater">#D7DDE4</color>
+
+</resources>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">FoodTestApp</string>
+
+
+    <string-array name="subcategory_array">
+    <item name="plate" type="string">prod_foodplate</item>
+    <item name="bowl" type="string">prod_foodbowl</item>
+    <item name="pizza" type="string">prod_fodpizza</item>
+    <item name="burger" type="string">prod_foodburger</item>
+    <item name="glass" type="string">prod_foodglass</item>
+    <item name="empty" type="string"></item>
+    </string-array>
+
+</resources>
