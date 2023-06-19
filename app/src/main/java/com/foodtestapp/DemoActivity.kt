@@ -29,7 +29,9 @@ class DemoActivity : AppCompatActivity(), Spyne.SkuListener {
             R.array.subcategory_array,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
             binding.spSubcategory.adapter = adapter
         }
 
@@ -50,65 +52,37 @@ class DemoActivity : AppCompatActivity(), Spyne.SkuListener {
         }
 
         binding.btnStart.setOnClickListener {
+
             when {
                 binding.etUserId.text.isNullOrEmpty() -> binding.etUserId.error = "Enter User Id"
                 binding.etSku.text.isNullOrEmpty() -> binding.etSku.error = "Enter Sku Id"
-                binding.etProjectName.text.isNullOrEmpty() -> binding.etProjectName.error =
+                binding.etProjectName.text.isNullOrEmpty() -> binding.etSku.error =
                     "Enter project name"
-                binding.etSkuName.text.isNullOrEmpty() -> binding.etSkuName.error = "Enter Sku name"
+                binding.etSkuName.text.isNullOrEmpty() -> binding.etSku.error = "Enter Sku name"
                 else -> {
-
-                    // Create a shoot builder object
                     val builder = Spyne.ShootBuilder(
                         this,
                         binding.etUserId.text.toString(),
                         this,
                     )
-
-                        // Configure Project and shoot Data
-                        .uniqueId(binding.etSku.text.toString())
+                        .uniqueId(binding.etUserId.text.toString())
                         .projectName(binding.etProjectName.text.toString())
                         .skuName(binding.etSkuName.text.toString())
                         .metaData(HashMap<String, Any>().apply {
                             put("rid", "test rid")
                         })
                         .shootType(getShootType())
-                        .maxNoOfUpload(binding.etNoOfImages.text.toString().toInt())
                         .classifier(getClassifierOptions())
                         .gyroMeter(getGyroMeterOptions())
                         .environment(if (AppConstants.BASE_URL == "https://beta-api.spyne.xyz/") "TESTING" else "PRODUCTION")
+                        .shootLocation(binding.cbSku.isChecked)
+                        .imageLocation(binding.cbImage.isChecked)
 
                     builder.subcategoryId(binding.spSubcategory.selectedItem.toString())
 
-                    // start shoot
                     val spyne = builder.build()
+
                     spyne.start()
-                }
-            }
-        }
-
-        binding.btnReshoot.setOnClickListener {
-            when {
-                binding.etUserId.text.isNullOrEmpty() -> binding.etUserId.error = "Enter User Id"
-                else -> {
-
-                    // Create a re-shoot builder object
-                    val builder = Spyne.ShootBuilder(
-                        this,
-                        binding.etUserId.text.toString(),
-                        skuListener = this,
-                    )
-                        // Configure Project and re-shoot Data
-                        .spyneSkuId(skuId ?: binding.etReshootSku.text.toString())
-                        .gyroMeter(getGyroMeterOptions())
-                        .gyroMeterVar(binding.etGyroDelta.text.toString().toInt())
-                        .classifier(getClassifierOptions())
-                        .imageLocation(true)
-
-
-                    // start re-shoot
-                    val spyne = builder.build()
-                    spyne.reshoot()
                 }
             }
         }
@@ -135,6 +109,20 @@ class DemoActivity : AppCompatActivity(), Spyne.SkuListener {
 
     override fun onShootCompleted(skuId: String, isReshoot: Boolean) {
     }
+
+    override fun onClassificationFailed(retryCount: Int, data: String) {
+        if (retryCount >= 3) {
+            val builder = Spyne.ShootBuilder(
+                this,
+                binding.etUserId.text.toString(),
+                this,
+            ).classifier(Classifier.NON_RESTRICTIVE)
+
+            val spyne = builder.build()
+            spyne.unableUnrestrictiveFlow()
+        }
+    }
+
 
     override fun onSkuCreated(skuId: String) {
         binding.tvSkuId.text = skuId

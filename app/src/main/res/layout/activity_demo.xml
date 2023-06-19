@@ -12,7 +12,7 @@
 
         <EditText
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,7 +27,7 @@
 
         <EditText
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etUserId"
@@ -41,7 +41,7 @@
 
         <EditText
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etSku"
@@ -55,7 +55,7 @@
 
         <EditText
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etProjectName"
@@ -67,13 +67,40 @@
             android:maxLines="1"
             android:imeOptions="actionDone"/>
 
+        <RadioGroup
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etSkuName"
+            android:id="@+id/rdg"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="TESTING"
+                android:checked="true"
+                android:id="@+id/rbTesting"/>
+
+            <RadioButton
+                android:id="@+id/rbProduction"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="Production" />
+
+        </RadioGroup>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etSkuName"
+            app:layout_constraintTop_toBottomOf="@id/rdg"
             android:layout_marginLeft="@dimen/dp_30"
             android:id="@+id/llShootType"
             android:layout_marginTop="@dimen/dp_10">
@@ -89,23 +116,53 @@
                 android:orientation="horizontal">
                 <RadioButton
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:text="Upload"
-                    android:id="@+id/cbUpload"
-                    android:checked="true"/>
+                    android:visibility="gone"
+                    android:id="@+id/cbUpload" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:text="Shoot"
+                    android:checked="true"
                     android:id="@+id/cbShoot" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:visibility="gone"
+                    android:text="Both" />
 
             </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Min. No. Of Images"
+                android:visibility="gone"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etMinNoOfImages"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:visibility="gone"
+                android:inputType="number"
+                android:maxLength="2"
+                android:imeOptions="actionDone"
+                android:hint="Min. No To Upload"
+                android:text="10"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Max No. Of Images"
+                android:visibility="gone"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/black"/>
 
@@ -114,6 +171,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/etNoOfImages"
                 android:maxLines="1"
+                android:visibility="gone"
                 android:singleLine="true"
                 android:inputType="number"
                 android:maxLength="2"
@@ -125,15 +183,34 @@
 
         <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:id="@+id/spSubcategory"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/llShootType"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginLeft="@dimen/dp_30"
-            android:layout_marginRight="@dimen/dp_30"
-            android:text="Select a Sub-category"/>
+            android:layout_marginRight="@dimen/dp_30"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:id="@+id/cbSku"
+            android:text="Sku Level Location"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spSubcategory"
+            android:layout_marginLeft="@dimen/dp_30"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:id="@+id/cbImage"
+            android:text="Image Level Location"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cbSku"
+            android:layout_marginLeft="@dimen/dp_30"/>
 
 
         <LinearLayout
@@ -142,7 +219,7 @@
             android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spSubcategory"
+            app:layout_constraintTop_toBottomOf="@id/cbImage"
             android:layout_marginLeft="@dimen/dp_30"
             android:id="@+id/llGyrometer"
             android:layout_marginTop="@dimen/dp_10">
@@ -150,24 +227,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gyrometer"
+                android:visibility="gone"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/black"/>
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:orientation="horizontal">
                 <RadioButton
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:text="Restrictive"
+                    android:checked="true"
                     android:id="@+id/gCbRestrictive" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Non-Restrictive"
-                    android:id="@+id/gCbNonRestrictive"
-                    android:checked="true"/>
+                    android:id="@+id/gCbNonRestrictive" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -180,6 +259,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gyrometer Roll Delta"
+                android:visibility="gone"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/black"/>
             <EditText
@@ -188,6 +268,7 @@
                 android:id="@+id/etGyroDelta"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:visibility="gone"
                 android:inputType="number"
                 android:maxLength="2"
                 android:imeOptions="actionDone"
@@ -209,11 +290,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Classifier"
+                android:visibility="gone"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/black"/>
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:orientation="horizontal">
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -226,8 +309,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Non-Restrictive"
-                    android:id="@+id/cCbNonRestrictive"
-                    android:checked="true"/>
+                    android:id="@+id/cCbNonRestrictive" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -238,13 +320,54 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llClassifier"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:id="@+id/llAddImage">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Image"
+                android:visibility="gone"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="On"
+                    android:checked="true"
+                    android:id="@+id/cbOn"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Off" />
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/llClassifier"
+            app:layout_constraintTop_toBottomOf="@id/llAddImage"
             android:text="start"
             android:id="@+id/btnStart"
             android:layout_margin="@dimen/dp_30"/>
@@ -272,6 +395,8 @@
             android:hint="Enter Reshoot Sku Id"
             android:singleLine="true"
             android:maxLines="1"
+            android:visibility="gone"
+            android:text="d7946736029e409dae4361a5b52d260c"
             android:imeOptions="actionDone"
             android:layout_marginTop="@dimen/dp_20"/>
 
@@ -282,6 +407,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etReshootSku"
             android:text="Reshoot"
+            android:visibility="gone"
             android:id="@+id/btnReshoot"
             android:layout_margin="@dimen/dp_30"/>
 

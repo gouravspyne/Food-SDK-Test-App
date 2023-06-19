@@ -3,12 +3,14 @@
 
 
     <string-array name="subcategory_array">
-    <item name="" type="string">Select a sub-category</item>
-    <item name="plate" type="string">prod_foodplate</item>
-    <item name="bowl" type="string">prod_foodbowl</item>
-    <item name="pizza" type="string">prod_fodpizza</item>
-    <item name="burger" type="string">prod_foodburger</item>
-    <item name="glass" type="string">prod_foodglass</item>
+        <item>prod_foodplate</item>
+        <item>prod_foodbowl</item>
+        <item>prod_fodpizza</item>
+        <item>prod_foodburger</item>
+        <item>prod_foodglass</item>
+        <item>prod_foodcake</item>
+        <item>prod_foodothers</item>
+        <item></item>
     </string-array>
 
 </resources>

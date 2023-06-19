@@ -42,7 +42,7 @@ object AppConstants {
     val KARVI_ENTERPRISE_ID: String = "DaD1JC1Fp"
     val OLA_ENTERPRISE_ID: String = "3HOBWP4KN"
     val ZOOMCAR_ENTERPRISE_ID: String = "P6LCAHA3Z"
-    val BASE_URL: String = "https://beta-api.spyne.xyz/"
+    var BASE_URL: String = "https://beta-api.spyne.xyz/"
 //        val BASE_URL: String =  "https://www.clippr.ai/"
     val STATUS_PROJECT_NAME: String = "STATUS_PROJECT_NAME"
     val SETTING_STATUS_GYRO: String = "STATUS_SETTING_GYRO"
