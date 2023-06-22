@@ -3,22 +3,36 @@ package com.foodtestapp
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.foodtestapp.databinding.ActivityDemoBinding
+import com.google.android.play.core.appupdate.AppUpdateInfo
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.appupdate.AppUpdateOptions
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.UpdateAvailability
 import com.spyneai.foodsdk.sdk.*
 
 class DemoActivity : AppCompatActivity(), Spyne.SkuListener {
 
     private lateinit var binding: ActivityDemoBinding
     val TAG = "DemoActivity"
+    private val MY_REQUEST_CODE: Int = 1
+    lateinit var appUpdateManager: AppUpdateManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDemoBinding.inflate(layoutInflater)
+
+        appUpdateManager = AppUpdateManagerFactory.create(this)
+
+        checkUpdate()
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
@@ -65,29 +79,89 @@ class DemoActivity : AppCompatActivity(), Spyne.SkuListener {
                         binding.etUserId.text.toString(),
                         this,
                     )
-                        .uniqueId(binding.etUserId.text.toString())
+                        .subcategoryId(binding.spSubcategory.selectedItem.toString())
+                        .uniqueId(binding.etSku.text.toString())
                         .projectName(binding.etProjectName.text.toString())
                         .skuName(binding.etSkuName.text.toString())
                         .metaData(HashMap<String, Any>().apply {
                             put("rid", "test rid")
                         })
                         .shootType(getShootType())
-                        .classifier(getClassifierOptions())
-                        .gyroMeter(getGyroMeterOptions())
-                        .environment(if (AppConstants.BASE_URL == "https://beta-api.spyne.xyz/") "TESTING" else "PRODUCTION")
+                        .minNoOfUpload(binding.etMinNoOfImages.text.toString().toInt())
+                        .maxNoOfUpload(binding.etNoOfImages.text.toString().toInt())
                         .shootLocation(binding.cbSku.isChecked)
                         .imageLocation(binding.cbImage.isChecked)
+                        .gyroMeter(getGyroMeterOptions())
+                        .gyroMeterVar(binding.etGyroDelta.text.toString().toInt())
+                        .classifier(getClassifierOptions())
+                        .resumeDraft(binding.cbResumeDraft.isChecked)
 
-                    builder.subcategoryId(binding.spSubcategory.selectedItem.toString())
 
                     val spyne = builder.build()
-
                     spyne.start()
                 }
             }
         }
 
     }
+
+    private fun checkUpdate() {
+        val appUpdateManager = AppUpdateManagerFactory.create(this)
+        val appUpdateInfoTask = appUpdateManager.appUpdateInfo
+// Checks that the platform will allow the specified type of update.
+        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                // This example applies an immediate update. To apply a flexible update
+                // instead, pass in AppUpdateType.FLEXIBLE
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
+            ) {
+                // Request the update.
+                appUpdateManager.startUpdateFlowForResult(
+                    // Pass the intent that is returned by 'getAppUpdateInfo()'.
+                    appUpdateInfo,
+                    // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
+                    AppUpdateType.IMMEDIATE,
+                    // The current activity making the update request.
+                    this,
+                    // Include a request code to later monitor this update request.
+                    MY_REQUEST_CODE
+                )
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        appUpdateManager
+            .appUpdateInfo
+            .addOnSuccessListener { appUpdateInfo ->
+                if (appUpdateInfo.updateAvailability()
+                    == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
+                ) {
+                    // If an in-app update is already running, resume the update.
+                    appUpdateManager.startUpdateFlowForResult(
+                        appUpdateInfo,
+                        AppUpdateType.IMMEDIATE,
+                        this,
+                        MY_REQUEST_CODE
+                    )
+                }
+            }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == MY_REQUEST_CODE) {
+            if (resultCode != AppCompatActivity.RESULT_OK) {
+                Toast.makeText(
+                    this,
+                    "Force update failed!, $requestCode",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
 
     private fun getGyroMeterOptions(): Gyrometer {
         return if (binding.gCbRestrictive.isChecked) Gyrometer.RESTRICTIVE

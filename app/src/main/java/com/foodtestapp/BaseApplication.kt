@@ -32,7 +32,11 @@ class BaseApplication : Application() {
 
         context = this
         setContext(this)
-        Spyne.init(this,"b2193b65-bbf3-49c8-9616-d7a31bc481a4",AppConstants.FOOD_AND_BEV_CATEGORY_ID)
+        Spyne.init(
+            this,
+            "b2193b65-bbf3-49c8-9616-d7a31bc481a4",
+            AppConstants.FOOD_AND_BEV_CATEGORY_ID
+        )
 
     }
 

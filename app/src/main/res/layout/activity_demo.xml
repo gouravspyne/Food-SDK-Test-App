@@ -83,12 +83,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:text="TESTING"
+                android:visibility="gone"
                 android:checked="true"
                 android:id="@+id/rbTesting"/>
 
             <RadioButton
                 android:id="@+id/rbProduction"
                 android:layout_width="wrap_content"
+                android:visibility="gone"
                 android:layout_height="48dp"
                 android:text="Production" />
 
@@ -178,6 +180,13 @@
                 android:imeOptions="actionDone"
                 android:hint="Max No To Upload"
                 android:text="25"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="Resume Draft"
+                android:id="@+id/cbResumeDraft"/>
+
 
         </LinearLayout>
 
