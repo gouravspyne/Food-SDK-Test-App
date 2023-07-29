@@ -2,8 +2,12 @@
 <resources>
     <dimen name="dp_10">10dp</dimen>
     <dimen name="dp_20">20dp</dimen>
+    <dimen name="sp_24">20sp</dimen>
+    <dimen name="dp_24">20dp</dimen>
     <dimen name="sp_16">16sp</dimen>
+    <dimen name="dp_16">16dp</dimen>
     <dimen name="sp_18">18sp</dimen>
+    <dimen name="sp_19">19sp</dimen>
     <dimen name="dp_7">7dp</dimen>
     <dimen name="dp_15">15dp</dimen>
     <dimen name="dp_5">5dp</dimen>
@@ -12,6 +16,7 @@
     <dimen name="dp_100">100dp</dimen>
     <dimen name="dp_150">150dp</dimen>
     <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_52">52dp</dimen>
 
     <dimen name="sp_10">10sp</dimen>
 
@@ -40,7 +45,12 @@
     <dimen name="sp_14">14sp</dimen>
 
 
-    <dimen name="tool_bar_height">56dp</dimen>
     <dimen name="dp_300">300dp</dimen>
+    <dimen name="gyro_reticle_stroke_width">0dp</dimen>
+    <dimen name="gyro_reticle_corner_radius">24dp</dimen>
+    <dimen name="view_pager_default_gap">59dp</dimen>
+
+    <dimen name="viewpager_next_item_visible">12dp</dimen>
+    <dimen name="viewpager_current_item_horizontal_margin">20dp</dimen>
 
 </resources>

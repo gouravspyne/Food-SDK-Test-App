@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/dp_16"
+    android:paddingTop="@dimen/dp_16"
+    android:paddingRight="@dimen/dp_16"
+    android:background="@drawable/bg_background">
+
+
+    <TextView
+        android:id="@+id/tvHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_24"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:fontFamily="@font/basisgrotesquearabicpro_bold"
+        android:text="Name of the food item"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:lineHeight="@dimen/sp_24"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:backgroundTint="@color/primary_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeading"
+        app:boxStrokeColor="@color/primary"
+        android:id="@+id/etSku"
+        android:hint="Sku Name"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:imeOptions="actionDone"/>
+
+
+    <LinearLayout
+        android:id="@+id/llButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp_16"
+        android:paddingBottom="@dimen/dp_16"
+        app:layout_constraintTop_toBottomOf="@+id/etSku"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <Button
+            android:id="@+id/btConfirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edit_swiggy"
+            android:backgroundTint="@color/primary"
+            android:fontFamily="@font/basisgrotesquearabicpro_bold"
+            android:gravity="center"
+            android:paddingVertical="13dp"
+            android:text="Confirm"
+            android:lineHeight="@dimen/sp_20"
+            android:lineSpacingExtra="1sp"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

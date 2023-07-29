@@ -1,5 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="black">#FF000000</color>
+    <color name="setting">#33000000</color>
+    <color name="setting_item">#00000000</color>
 
+    <color name="primary">#4600F2</color>
+    <color name="primary_dark">#6A2802</color>
+    <color name="primary_light">#F0EBFE</color>
+    <color name="secondary">#262626</color>
+    <color name="gyro_transparent">#D9D9D9</color>
+    <color name="white75">#BFFFFFFF</color>
+    <color name="white45">#73FFFFFF</color>
+    <color name="midnight">#02060C</color>
+    <color name="midnight30">#4D02060C</color>
+    <color name="midnight70">#B302060C</color>
+    <color name="midnight75">#BF02060C</color>
+    <color name="midnight60">#9902060C</color>
+    <color name="greenhaze">#1BA672</color>
+    <color name="pink">#E53554</color>
+    <color name="retry_text">#696B79</color>
+    <color name="black_bg">#02060C</color>
+    <color name="black_bg75">#BF02060C</color>
+    <color name="black_bg92">#EB02060C</color>
+    <color name="black_bg45">#7302060C</color>
+    <color name="black_bg60">#9902060C</color>
+    <color name="border">#2602060C</color>
+    <color name="progress_background">#F0F0F5</color>
+    <color name="gyro_reticle_stroke">#ffffff</color>
+    <color name="gyro_reticle_background">#99000000</color>
+    <color name="camera_bg">#262626</color>
+    <color name="camera_bg30">#4D262626</color>
+
+    <color name="select_item">#6541E4</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#26FFFFFF</color>
+    <color name="transparent_2">#00000000</color>
+    <color name="transparents">#90000000</color>
+    <color name="grey">#CDCCCC</color>
+    <color name="eye_grey">#8E8D8D</color>
+    <color name="lightgrey">#DDD8D8</color>
+
+    <color name="categories_text">#4F4F4F</color>
+
+    <color name="line_separator">#F0EEEE</color>
+    <color name="shimmer_background">#dddddd</color>
+    <color name="green">#40CE4E</color>
+    <color name="red">#FF0000</color>
+
+
+    <color name="gyro_in_level">#1BA672</color>
+    <color name="gyro_error_level">#E53554</color>
+
+
+    <color name="sub_cat_selection">#566DED</color>
+
+
+    <color name="qc_green">#B31CA24A</color>
+    <color name="qc_yellow">#B3FFC70A</color>
+    <color name="qc_orange">#B3FC791A</color>
+    <color name="qc_red">#B3AA0602</color>
 
 </resources>

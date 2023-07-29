@@ -17,9 +17,14 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.appupdate.AppUpdateOptions
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
-import com.spyneai.foodsdk.sdk.*
+import com.spyneai.foodsdk.sdk.Classifier
+import com.spyneai.foodsdk.sdk.Gyrometer
+import com.spyneai.foodsdk.sdk.ShootType
+import com.spyneai.foodsdk.sdk.Spyne
 
-class DemoActivity : AppCompatActivity(), Spyne.SkuListener {
+//import com.spyneai.foodsdk.sdk.*
+
+class DemoActivity : AppCompatActivity(), Spyne.SkuListener{
 
     private lateinit var binding: ActivityDemoBinding
     val TAG = "DemoActivity"
@@ -66,6 +71,7 @@ class DemoActivity : AppCompatActivity(), Spyne.SkuListener {
         }
 
         binding.btnStart.setOnClickListener {
+
 
             when {
                 binding.etUserId.text.isNullOrEmpty() -> binding.etUserId.error = "Enter User Id"
@@ -181,26 +187,27 @@ class DemoActivity : AppCompatActivity(), Spyne.SkuListener {
         else ShootType.BOTH
     }
 
-    override fun onShootCompleted(skuId: String, isReshoot: Boolean) {
-    }
-
-    override fun onClassificationFailed(retryCount: Int, data: String) {
-        if (retryCount >= 3) {
-            val builder = Spyne.ShootBuilder(
-                this,
-                binding.etUserId.text.toString(),
-                this,
-            ).classifier(Classifier.NON_RESTRICTIVE)
-
-            val spyne = builder.build()
-            spyne.unableUnrestrictiveFlow()
-        }
-    }
-
 
     override fun onSkuCreated(skuId: String) {
         binding.tvSkuId.text = skuId
     }
+    override fun onShootCompleted(
+        skuId: String, isReshoot: Boolean, imageCategory: String,
+        outputImageUrl: String
+    ) {
+
+    }
+
+    override fun onExitShoot(skuId: String, isDraftAvailable: Boolean) {
+        Toast.makeText(this, "sku id${skuId}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onClassificationFailed(retryCount: Int, data: String) {
+        if (retryCount >= 1) {
+            Spyne.enableUnrestrictiveFlow()
+        }
+    }
+
 
 
 }
