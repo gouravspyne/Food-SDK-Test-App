@@ -170,7 +170,16 @@ class HomeActivity : AppCompatActivity(), OnOverlaySelectionListener, OnItemClic
         startShoot()
     }
 
+    fun getFirstSelectedSubcatId(): String? {
+        val selectedSubcat = subcatList.firstOrNull { it.isSelected }
+        return selectedSubcat?.id
+    }
+
     private fun startShoot() {
+
+        Log.d("SubcategoryId", "id: ${subcatList.filter { it.isSelected }
+            .map { it.id }}")
+
         viewModel.startShoot.observe(this) {
             if (it) {
                 viewModel.startShoot.postValue(false)
@@ -179,7 +188,7 @@ class HomeActivity : AppCompatActivity(), OnOverlaySelectionListener, OnItemClic
                     getUniqueIdentifier(),
                     this@HomeActivity,
                 )
-                    .subcategoryId(subcatList[0].id)
+                    .subcategoryId(getFirstSelectedSubcatId().toString())
                     .uniqueId(getUniqueIdentifier())
                     .projectName(viewModel.skuName)
                     .skuName(viewModel.skuName)

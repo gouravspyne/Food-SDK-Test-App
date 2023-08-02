@@ -90,7 +90,11 @@ class DemoActivity : AppCompatActivity(), Spyne.SkuListener{
                         .projectName(binding.etProjectName.text.toString())
                         .skuName(binding.etSkuName.text.toString())
                         .metaData(HashMap<String, Any>().apply {
-                            put("rid", "test rid")
+                            put("rid", "test app rid")
+                            put("user_id", "test app user")
+                            put("item_id", "test app item id")
+                            put("session_id", "test app session id")
+                            put("source", "test app source")
                         })
                         .shootType(getShootType())
                         .minNoOfUpload(binding.etMinNoOfImages.text.toString().toInt())

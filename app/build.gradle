@@ -13,8 +13,8 @@ android {
         applicationId "com.foodtestapp"
         minSdk 24
         targetSdk 33
-        versionCode 11
-        versionName "2.1"
+        versionCode 12
+        versionName "2.2"
         signingConfig signingConfigs.debug
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,12 +27,12 @@ android {
                 mappingFileUploadEnabled false
             }
         }
-//        debug {
-//            versionNameSuffix ".debug"
-//            applicationIdSuffix ".debug"
-//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//            minifyEnabled false
-//        }
+        debug {
+            versionNameSuffix ".debug"
+            applicationIdSuffix ".debug"
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled false
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -70,8 +70,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 
-
-
     // spyne food-SDK dependency
-    implementation 'com.github.Spyne-Tech:spyne-food-sdk:2c1b3fa708'
+    implementation 'com.github.Spyne-Tech:spyne-food-sdk:e77020b717'
 }
