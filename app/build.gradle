@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id "io.sentry.android.gradle" version "3.5.0"
 }
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
@@ -17,6 +18,23 @@ android {
         versionName "2.2"
         signingConfig signingConfigs.debug
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+
+    sentry {
+        includeProguardMapping.set(true)
+        autoUploadProguardMapping.set(true)
+        experimentalGuardsquareSupport.set(false)
+        uploadNativeSymbols.set(false)
+        includeNativeSources.set(false)
+        tracingInstrumentation {
+            enabled.set(true)
+        }
+        autoInstallation {
+            enabled.set(true)
+            sentryVersion.set("6.4.0")
+        }
+        includeDependenciesReport.set(true)
     }
 
     buildTypes {
@@ -70,6 +88,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 
+    implementation 'io.sentry:sentry-android:+'
+
     // spyne food-SDK dependency
-    implementation 'com.github.Spyne-Tech:spyne-food-sdk:e77020b717'
+    implementation 'com.github.Spyne-Tech:spyne-food-sdk:1.1.7'
 }
